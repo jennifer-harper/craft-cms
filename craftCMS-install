@@ -1,0 +1,31 @@
+jenniferharper@MacBook-Pro ~ % cd Sites jenniferharper@MacBook-Pro Sites % ddev
+- mkdir newsite cd newsite ddev config --project-type=craftcms --docroot=web
+--create-docroot ddev start ddev composer create -y --no-scripts craftcms/craft
+ddev craft install ddev launch add fortrabbit git git remote add fortrabbit
+gentledental@deploy.eu2.frbit.com:gentledental.git _layout.twig
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ currentSite.language }}">
+  <head>
+    {% block head %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <title>{{ docTitle ?? siteName }}</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    {% do craft.app.view.registerCssFile('@web/styles.css') %} {% endblock %}
+  </head>
+  <body {{ attr(bodyAttributes ?? {}) }}>
+    {% block body %} {% endblock %}
+  </body>
+</html>
+
+_entries {% extends "_layout.twig" %} {% set docTitle = 'Hello World' %} {% set
+bodyAttributes = { class: 'hello-world' } %} {% block head %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+{% endblock %} {% block body %}
+<h1>Hello world!</h1>
+{% endblock %}
